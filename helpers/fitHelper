@@ -1,6 +1,13 @@
-def effFit():
-  pass
-  
-  
+import numpy as np
+import math
+from scipy.optimize import curve_fit
+
+def curve(x, pt_threshold, mu, sigma):
+    return 0.5*(1 + math.erf(((1-x/pt_threshold) - mu) /((2)**(0.5)*sigma) ) )
+
+def effFit(x, y):
+    popt, pcov = curve_fit(curve, x, y)
+    return tuple(popt)
+
   
  
